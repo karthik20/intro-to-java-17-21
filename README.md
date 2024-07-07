@@ -1,6 +1,8 @@
 # intro-to-java-17-21
 Introduction to Java with some basic exercises
 
+[Java energy efficiency!](https://devm.io/java/energy-efficient-programming-languages-137264)
+
 # Prerequisites:
 - Install JDK 21
 - Setup home or path for Java
@@ -21,7 +23,7 @@ Introduction to Java with some basic exercises
 - Advanced Ref: https://www.baeldung.com/java-groupingby-collector
 - JDK 21 improvements - Sequential collections
 
-## Chapter 4 - Lambdas and JDK8 features
+## Chapter 4 - Functional Programming - Lambdas and JDK8 features
 - Lambda intro
 - Function, BiFunction
 - Predicate
@@ -31,11 +33,13 @@ Introduction to Java with some basic exercises
 ## Chapter 5 - Multithreading
 - What's that?
 - How to make use of it?
+- Quick References: https://www.baeldung.com/java-start-thread
 - JDK 21 improvements
 
 ## Chapter 5 - JAR/WAR
 - Theory
 - Create a JAR for your simple program
+
 
 ## Chapter 6 - Intro to Build tools
 - Create a library using maven
