@@ -11,10 +11,29 @@ public class VirtualThreadDemo {
 
     /**
      * Simulates an I/O bound task (like a database query or HTTP request)
+     * 
+     * This example demonstrates why virtual threads are faster:
+     * 1. Thread.sleep() simulates a blocking I/O operation (like DB query or network call)
+     * 2. With platform threads (fixed pool of 20):
+     *    - Only 20 tasks can run concurrently
+     *    - Other tasks must wait for a thread to become available
+     *    - For 1000 tasks, need ~50 batches (1000/20) * 100ms each = ~5 seconds
+     * 
+     * 3. With virtual threads:
+     *    - All 1000 tasks can start concurrently
+     *    - When a virtual thread blocks on I/O (sleep), it releases the carrier thread
+     *    - Carrier thread can then run other virtual threads
+     *    - Total time closer to 100ms (one I/O operation time)
+     *    
+     * If this were CPU-bound work instead of I/O, the advantage would disappear
+     * because virtual threads still need carrier threads for CPU work.
      */
     private static String simulateIOOperation(String threadInfo) {
         try {
             // Simulate I/O operation that takes 100ms
+            // During this sleep:
+            // - Platform thread remains blocked
+            // - Virtual thread unmounts from carrier thread, allowing others to run
             Thread.sleep(100);
             return "Completed I/O operation in " + threadInfo;
         } catch (InterruptedException e) {
@@ -32,6 +51,14 @@ public class VirtualThreadDemo {
         try (ExecutorService executor = Executors.newFixedThreadPool(20)) {
             IntStream.range(0, taskCount).forEach(i -> {
                 executor.submit(() -> {
+                    /*
+                    Only 20 platform threads available
+                        For 1000 tasks:
+                            First 20 tasks start immediately
+                            Other 980 tasks must wait
+                            Each batch takes 100ms
+                            Total time approx. (1000/20) * 100ms = 5000ms (5 seconds)
+                     */
                     String result = simulateIOOperation(Thread.currentThread().toString());
                     System.out.println(result);
                 });
@@ -108,7 +135,7 @@ public class VirtualThreadDemo {
      */
     public static void main(String[] args) {
         System.out.println("=== Virtual Thread vs Platform Thread Demonstration ===");
-        
+                
         // First demonstrate different ways to create virtual threads
         demonstrateVirtualThreadCreation();
 
@@ -122,6 +149,8 @@ public class VirtualThreadDemo {
         }
         
         System.out.println("\nKey Observations:");
+        int cores = Runtime.getRuntime().availableProcessors();
+        System.out.println("=== Number of cores available :: "+ cores + " ===");
         System.out.println("1. Virtual threads are more efficient for I/O-bound tasks");
         System.out.println("2. Platform threads are limited by system resources");
         System.out.println("3. Virtual threads can handle many more concurrent tasks");
