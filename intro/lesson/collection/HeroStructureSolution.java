@@ -1,9 +1,8 @@
 package lesson.collection;
 
+import static exercise.utils.SolutionValidation.assertWithPredicate;
 import java.util.*;
 import java.util.stream.Collectors;
-
-import static exercise.utils.SolutionValidation.assertWithPredicate;
 
 public class HeroStructureSolution {
 
@@ -56,20 +55,20 @@ public class HeroStructureSolution {
     }
 
     // Creates a list of heroes with different departments
-    static Department avengers = new Department(1, "Avengers");
-    static Department highTable = new Department(2, "High Table");
-    static Department justiceLeague = new Department(3, "Justice League");
-    static Department dailyBugle = new Department(4, "Daily Bugle");
-    static Department starkIndustries = new Department(5, "Stark Industries");
-    static Department dailyPlanet = new Department(6, "Daily Planet");
-    static Department disney = new Department(7, "Disney");
+    static final Department avengers = new Department(1, "Avengers");
+    static final Department highTable = new Department(2, "High Table");
+    static final Department justiceLeague = new Department(3, "Justice League");
+    static final Department dailyBugle = new Department(4, "Daily Bugle");
+    static final Department starkIndustries = new Department(5, "Stark Industries");
+    static final Department dailyPlanet = new Department(6, "Daily Planet");
+    static final Department disney = new Department(7, "Disney");
     static List<Department> allDepartments = List.of(avengers, highTable, justiceLeague, dailyBugle, starkIndustries, dailyPlanet, disney);
 
-    static Hero john = new Hero(1L, "John", "Wick", List.of(highTable));
-    static Hero peter = new Hero(2L, "Peter", "Parker", List.of(dailyBugle, avengers));
-    static Hero tony = new Hero(3L, "Tony", "Stark", List.of(avengers, starkIndustries));
-    static Hero clark = new Hero(4L, "Clark", "Kent", List.of(dailyPlanet, justiceLeague));
-    static Hero pan = new Hero(5L, "Peter", "Pan", List.of(disney));
-    static Hero diana = new Hero(6L, "Diana", "Prince", List.of(justiceLeague));
-    static List<Hero> allHeroes = List.of(john, peter, tony, clark, pan, diana);
+    static final Hero john = new Hero(1L, "John", "Wick", List.of(highTable));
+    static final Hero peter = new Hero(2L, "Peter", "Parker", List.of(dailyBugle, avengers));
+    static final Hero tony = new Hero(3L, "Tony", "Stark", List.of(avengers, starkIndustries));
+    static final Hero clark = new Hero(4L, "Clark", "Kent", List.of(dailyPlanet, justiceLeague));
+    static final Hero pan = new Hero(5L, "Peter", "Pan", List.of(disney));
+    static final Hero diana = new Hero(6L, "Diana", "Prince", List.of(justiceLeague));
+    static final List<Hero> allHeroes = List.of(john, peter, tony, clark, pan, diana);
 }

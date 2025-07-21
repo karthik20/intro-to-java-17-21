@@ -4,8 +4,8 @@ import java.util.function.Predicate;
 
 public class SolutionValidation {
 
-    final static String CORRECT = "\033[0;32m" + "✅";
-    final static String WRONG = "\033[0;31m" + "❌";
+    final static String CORRECT = "\033[0;32m" + "✅ ";
+    final static String WRONG = "\033[0;31m" + "❌ ";
     public static <T> void assertWithPredicate(String testCaseName, T input, Predicate<T> validator) {
         if (!validator.test(input)) {
             var error = """ 

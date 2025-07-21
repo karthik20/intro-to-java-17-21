@@ -36,9 +36,12 @@ Introduction to Java with some basic exercises
 - Quick References: https://www.baeldung.com/java-start-thread
 - JDK 21 improvements
 
-## Chapter 5 - JAR/WAR
+## Chapter 5 - JAR
 - Theory
 - Create a JAR for your simple program
+```
+jar cvf MyApp.jar -C path/to/classes/ .
+```
 
 
 ## Chapter 6 - Intro to Build tools
